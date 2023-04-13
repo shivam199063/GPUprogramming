@@ -1,6 +1,6 @@
 %%cu
 //add two 1D matrix 
-// here we launch one single block which has user defined threads(let's threads =10)
+// here we launch one single block which has user defined threads(let's threads =10) 
 
 
 #include<stdio.h>
