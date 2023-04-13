@@ -2,7 +2,6 @@
 //add two 1D matrix 
 // here we launch one single thread in each block
 
-
 #include<stdio.h>
 #include<cuda.h>
 
