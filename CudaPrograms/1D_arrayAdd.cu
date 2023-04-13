@@ -6,12 +6,10 @@
 #include<stdio.h>
 #include<cuda.h>
 
-__global__ void vectorAdd(float *x,float *y, float *z,int threads){
+__global__ void vectorAdd(float *x,float *y, float *z){
     int id= threadIdx.x;
-    if(id<threads)
-        z[id]=x[id]+y[id];
-    else
-        printf("You launch more than given threads: ");
+    z[id]=x[id]+y[id];
+    
 }
 
 int main(int *argc,char **argv[]){
@@ -38,7 +36,7 @@ int main(int *argc,char **argv[]){
     cudaMemcpy( d_y, y , array_size , cudaMemcpyHostToDevice);
 
     // now we launch kernel
-    vectorAdd<<<1,threads>>>(d_x,d_y,d_z,threads);
+    vectorAdd<<<1,threads>>>(d_x,d_y,d_z);
 
     // copy array from gpu to cpu memory
     cudaMemcpy( z , d_z , array_size , cudaMemcpyDeviceToHost);
