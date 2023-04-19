@@ -11,7 +11,7 @@
 #define col2 2
 
 __global__ void vectorMul(float *a,float *b, float *c){
-    __shared__ int p[col1];
+    __shared__ float p[col1];
     int row = blockIdx.y;
     int col = blockIdx.x;
     int k = threadIdx.x;
@@ -21,7 +21,7 @@ __global__ void vectorMul(float *a,float *b, float *c){
     __syncthreads();
     for(int i=0;i<col1;i++){
 
-        c[row*col2+col]=c[row*col2+col]+p[i];
+        c[row*col2+col]+= p[i];
     }
 
 
